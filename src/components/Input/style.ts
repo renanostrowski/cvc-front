@@ -9,11 +9,15 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
+  display: flex;
+
   background-color: #232129;
   border-radius: 10px;
   padding: 16px;
-  width: ${props => props.width?.valueOf};
 
+  width: 100%;
+  max-width: 350px;
+  
   border: 2px solid #232129;
   color: #666360;
 
