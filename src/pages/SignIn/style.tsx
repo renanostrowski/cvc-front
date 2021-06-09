@@ -7,6 +7,11 @@ export const Container = styled.div`
 
   display: flex;
   align-items: stretch;
+
+  a {
+    text-decoration: none;
+    color: #312e38;
+  }
 `;
 
 export const Content = styled.div`
