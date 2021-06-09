@@ -26,7 +26,7 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Button = styled.div<ContainerProps>`
-  padding: 5px;
+  padding: 3px;
   background: #232129;
   cursor: pointer;
   display: flex;
@@ -50,6 +50,8 @@ export const Button = styled.div<ContainerProps>`
 `;
 
 export const Content = styled.div`
+  position: absolute;
+  width: 100%;
   padding: 10px;
   background: #232129;
 `;
@@ -81,4 +83,6 @@ export const Overlay = styled.div`
 	z-index:0;
 	width:100%;
 	height:100%;
+  background-color: #ffffff15;
+  filter: blur(100px);
 `;
