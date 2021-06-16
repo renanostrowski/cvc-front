@@ -5,9 +5,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-
   p {
     margin: 8px;
+  }
+
+  Form {
+    display: flex;
   }
 `;
 
@@ -27,9 +30,9 @@ export const Label = styled.div`
 `;
 
 export const Content = styled.div`
+  flex: 1;
   display: flex;
-  justify-content: center;
-  margin-top: 5px;
-  margin-left: 20px;
+  flex-direction: row;
+  margin-left: 15px;
   
 `;

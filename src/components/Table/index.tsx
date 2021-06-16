@@ -1,4 +1,5 @@
 import React from 'react';
+import { idText } from 'typescript';
 
 import {TableP} from './styles';
 
@@ -32,6 +33,11 @@ interface TableProps<T> {
   items: T[];
   headers: TableHeaders<T>;
   customRenderers?: CustomRenderers<T>;
+
+  heigth?: string;
+  width?: string;
+  padding?: string[];
+  margin?: string[];
 };
 
 function handleClick(item: any, id: String) {
@@ -58,7 +64,7 @@ export default function Table<T>(props: TableProps<T>) {
   }
 
   return (
-    <TableP>
+    <TableP padding={props.padding} heigth={props.heigth} width={props.width}>
       <thead>
         {objectValues(props.headers).map((headerValue) => (
           <th>{headerValue}</th>

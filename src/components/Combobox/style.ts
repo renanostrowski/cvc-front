@@ -1,33 +1,49 @@
 import { shade } from 'polished';
 import styled, { css } from 'styled-components';
 
-interface ContainerProps {
+interface Props {
   isFocused?: boolean;
   isFilled?: boolean;
   isErrored?: boolean;
+
+  contBackColor?: string;
+  contWidth?: string;
+  contRadius?: string;
+  contBorder?: string;
+  contFocusColor?: string;
+
+  buttonBackColor?: string;
+  buttonBorder?: string;
+  buttonFocusColor?: string;
+  buttonpadding?: string;
+
+  Contentpadding?: string;
+  Contentbackground?: string;
+
+  itemPadding?: string;
 }
 
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.div<Props>`
   position: relative;
   z-index: 2;
 
-  width: 350px;
+  width: ${(props) => (props.contWidth)};
 
-  background-color: #232129;
-  border-radius: 5px;
-  border: 2px solid #232129;
+  background-color: ${(props) => (props.contBackColor)};
+  border-radius: ${(props) => (props.contRadius)};
+  border: ${(props) => (props.contBorder)};
 
   ${props => props.isFocused && 
-  css`
-    color: #ff9000;
-    border-color: #ff9000;
+  css<Props>`
+    color: ${(props) => (props.contFocusColor)};
+    border-color: ${(props) => (props.contFocusColor)};
   `}
 `;
 
-export const Button = styled.div<ContainerProps>`
-  padding: 3px;
-  background: #232129;
+export const Button = styled.div<Props>`
+  padding: ${(props) => (props.buttonpadding)};
+  background: ${(props) => (props.buttonBackColor)};
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -37,23 +53,23 @@ export const Button = styled.div<ContainerProps>`
   border: 2px solid #232129;
   
   ${props => props.isFocused && 
-  css`
-    color: #ff9000;
-    border-color: #ff9000;
+  css<Props>`
+    color: ${(props) => (props.buttonFocusColor)};
+    border-color: ${(props) => (props.buttonFocusColor)};
   `}
 
   transition: background 0.2s;
 
   &:hover{
-    background: ${shade(0.2, '#232129')};
+    filter: brightness(70%);
   }
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<Props>`
   position: absolute;
   width: 100%;
-  padding: 10px;
-  background: #232129;
+  padding: ${(props) => (props.Contentpadding)};
+  background: ${(props) => (props.Contentbackground)};
 `;
 
 export const List = styled.ul`
@@ -62,17 +78,17 @@ export const List = styled.ul`
   flex-direction: column;
 `;
 
-export const Item = styled.li`
+export const Item = styled.li<Props>`
   display: flex;
   flex: 1;
   list-style-type: none;
   cursor: pointer;
-  padding: 10px;
+  padding: ${(props) => (props.itemPadding)};
 
   transition: background 0.2s;
 
   &:hover{
-    background: ${shade(0.2, '#232129')};
+    filter: brightness(70%);
   }
 `;
 

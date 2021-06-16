@@ -1,25 +1,37 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-  isFocused: boolean;
-  isFilled: boolean;
-  isErrored: boolean;
-  width?: Number;
-  heigth?: Number;
+  isFocused?: boolean;
+  isFilled?: boolean;
+  isErrored?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  heigth?: string;
+  with?: string | undefined;
+  border?: string;
+  padding?: string;
+  margin?: string;
+  radius?: string;
 }
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
+  align-items: center;
 
-  background-color: #232129;
-  border-radius: 10px;
-  padding: 16px;
-
-  width: 100%;
-  max-width: 350px;
-  
-  border: 2px solid #232129;
+  background: ${(props) => (props.backgroundColor)};
+  color: ${(props) => (props.color)};
   color: #666360;
+
+  width: ${(props) => (props.with)};
+
+  border-radius: ${(props) => (props.radius)};
+  border: ${(props) => (props.border)};
+
+  margin: ${(props) => (props.margin)};
+  
+  padding: ${(props) => (props.padding)};
+  
+  
 
   ${props => props.isFocused && 
   css`
@@ -47,10 +59,11 @@ export const Container = styled.div<ContainerProps>`
     color: #f4ede8;
 
     &::placeholder {
-      color: #666360;
+      color: ${(props) => ("#000" && props.color)};
     }
   }
   svg {
     margin-right: 16px;
+    color: ${(props) => ("#000" && props.color)};
   }
 `;

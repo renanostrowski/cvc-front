@@ -1,23 +1,36 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
+interface ButtonProps {
+  backgroundColor?: string;
+  color?: string;
+  heigth?: string;
+  with?: string;
+  border?: string;
+  padding?: string;
+  margin?: string;
+  radius?: string;
+  fontWeight?: string;
+}
 
-export const Container = styled.button`
-  width: 350px;
-  margin-top: 26px;
-  border-radius: 10px;
-  background-color: #ff9000;
-  padding: 16px;
-  color: #312e38;
+export const Container = styled.button<ButtonProps>`
+  background-color: ${(props) => (props.backgroundColor)};
+  color: ${(props) => (props.color)};
 
-  border: 0;
-  color: #312e38;
+  width: ${(props) => (props.with)};
+
+  border-radius: ${(props) => (props.radius)};
+  border: ${(props) => (props.border)};
+
   
-  font-weight: 500;
+  font-weight: ${(props) => (props.fontWeight)};
+
+  margin: ${(props) => (props.margin)};
+  padding: ${(props) => (props.padding && props.padding)};
+
   transition: background 0.2s;
 
-  &:hover{
-    background: ${shade(0.2, '#ff9000')};
+
+  &:hover{ 
+    filter: brightness(70%);
   }
 `;
-

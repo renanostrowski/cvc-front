@@ -14,9 +14,29 @@ interface Data {
     name: string;
   }[];
   multselect?: Boolean;
+
+  isFocused?: boolean;
+  isFilled?: boolean;
+  isErrored?: boolean;
+
+  contBackColor?: string;
+  contWidth?: string;
+  contRadius?: string;
+  contBorder?: string;
+  contFocusColor?: string;
+
+  buttonBackColor?: string;
+  buttonBorder?: string;
+  buttonFocusColor?: string;
+  buttonpadding?: string;
+
+  Contentpadding?: string;
+  Contentbackground?: string;
+
+  itemPadding?: string;
 };
 
-const Combobox: React.FC<Data> = ({title, items = [], multselect = false}) => {
+const Combobox: React.FC<Data> = ({title, items = [], multselect = false, ...rest}) => {
   const [selected, setSelected] = useState("");
   const [isOpened, setIsOpened] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -30,12 +50,23 @@ const Combobox: React.FC<Data> = ({title, items = [], multselect = false}) => {
         isOpened && setIsOpened(!isOpened)}
       }/>)
     }
-      <Container isFocused={isFocused}>
+      <Container 
+      isFocused={isFocused}
+      contBackColor={rest.contBackColor}
+      contWidth={rest.contWidth}
+      contRadius={rest.contRadius}
+      contBorder={rest.contBorder}
+      contFocusColor={rest.contFocusColor}
+      >
         <Button 
         onKeyPress={() => (setIsOpened(!isOpened))} 
         onClick={() => (setIsOpened(!isOpened))}
         onBlur={() => setIsFocused(false)}
         onFocus={() => setIsFocused(true)}
+        buttonBackColor={rest.buttonBackColor}
+        buttonBorder={rest.buttonBorder}
+        buttonFocusColor={rest.buttonFocusColor}
+        buttonpadding={rest.buttonpadding}
         >
           <div className="title">
             <p className="header-title">{selected || title}</p>
@@ -45,13 +76,19 @@ const Combobox: React.FC<Data> = ({title, items = [], multselect = false}) => {
           </div>
         </Button>
           {isOpened && (
-            <Content>
+            <Content
+            Contentpadding={rest.Contentpadding}
+            Contentbackground={rest.Contentbackground}
+            >
               <List>
                 {items.map(item => (
-                  <Item className="listitem" key={item.id} 
-                  onClick={() => {
-                      setSelected(item.name)
-                      setIsOpened(false);
+                  <Item 
+                    itemPadding={rest.itemPadding}
+                    className="listitem" 
+                    key={item.id} 
+                    onClick={() => {
+                    setSelected(item.name)
+                    setIsOpened(false);
                     }}>
                     <span>{item.name}</span>
                   </Item>
